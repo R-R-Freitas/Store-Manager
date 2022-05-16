@@ -8,9 +8,9 @@ const salesByIdNormalizer = (sale) => {
 };
 
 const salesAllNormalizer = (sale) => {
-  const { id, date, quantity } = sale;
+  const { date, quantity } = sale;
   return {
-    id,
+    saleId: sale.id,
     date,
     productId: sale.product_id,
     quantity,

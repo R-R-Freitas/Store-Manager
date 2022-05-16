@@ -1,13 +1,13 @@
-const productsModel = require('../models/productsModels');
+const productsModels = require('../models/productsModels');
 const errorHandler = require('../middlewares/errorHandler');
 
 const getAll = async () => {
-  const modelResult = await productsModel.getAll();
-  return { code: 200, body: modelResult };
+  const modelResult = await productsModels.getAll();
+  return modelResult;
 };
 
 const getById = async (id) => {
-  const modelResult = await productsModel.getById(id);
+  const modelResult = await productsModels.getById(id);
   if (!modelResult) throw errorHandler(404, 'Product not found');
   return modelResult;
 };

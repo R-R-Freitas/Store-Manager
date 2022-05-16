@@ -21,14 +21,14 @@ describe('Busca todas as vendas', () => {
   it ('retorna um objeto com as chaves esperadas', async() => {
     const result = await salesServices.getAll();
     expect(result).to.be.an('array');
-    expect([result]).to.include.all.keys('saleId', 'date', 'productId', 'quantity');
+    expect(result[0]).to.include.all.keys('saleId', 'date', 'productId', 'quantity');
   });
   after(() => {
     salesModels.getAll.restore();
   });
 });
 
-describe('Busca um produto pelo id', () => {
+describe('Busca vendas pelo id do produto', () => {
   describe('Busca um id válido', () => {
     before(() => {
       sinon.stub(salesModels, 'getById').resolves(modelReturnById);
@@ -40,7 +40,7 @@ describe('Busca um produto pelo id', () => {
     });
     it ('o retorno do service tem as keys esperadas', async() => {
       const result = await salesServices.getById(1);
-      expect([result]).to.include.all.keys('date', 'productId', 'quantity');
+      expect(result[0]).to.include.all.keys('date', 'productId', 'quantity');
     })
     after(() => {
       salesModels.getById.restore();
