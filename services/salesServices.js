@@ -11,7 +11,7 @@ const getAll = async () => {
 const getById = async (id) => {
   const modelResult = await salesModels.getById(id);
   if (!modelResult || modelResult.length === 0) {
-    throw errorHandler(404, 'Product not found');
+    throw errorHandler(404, 'Sale not found');
   }
   const result = modelResult.map(salesByIdNormalizer);
   return result;
