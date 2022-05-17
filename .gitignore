@@ -215,7 +215,8 @@ typings/
 # dotenv environment variables file
 .env
 .env.test
-
+store_manager_key
+store_manager_key.pub
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 

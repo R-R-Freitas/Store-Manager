@@ -1,6 +1,6 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
-const salesModels = require('../../../models/salesModels')
+const salesModels = require('../../../models/salesModels');
 const salesServices = require('../../../services/salesServices');
 const modelReturnAll = [
   {id: 1, date: '2022-02-28 12:05:56', product_id: 1, quantity: 5},

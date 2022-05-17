@@ -1,6 +1,6 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
-const productsModels = require('../../../models/productsModels')
+const productsModels = require('../../../models/productsModels');
 const productsServices = require('../../../services/productsServices');
 const modelResultAll = [
   {id: 1, name: 'Martelo de Thor', quantity: 10},
