@@ -7,6 +7,7 @@ const {
   getProductsById,
   createProduct,
   updateProduct,
+  deleteProduct,
 } = require('../controllers/productsControllers');
 const {
   getAllSales,
@@ -18,6 +19,7 @@ router.get('/products', rescue(getAllProducts));
 router.get('/products/:id', rescue(getProductsById));
 router.post('/products', rescue(createProduct));
 router.put('/products/:id', rescue(updateProduct));
+router.delete('/products/:id', rescue(deleteProduct));
 
 router.get('/sales', rescue(getAllSales));
 router.get('/sales/:id', rescue(getSalesById));
