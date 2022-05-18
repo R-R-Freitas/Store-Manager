@@ -29,4 +29,16 @@ const getById = async (id) => {
   return result;
 };
 
-module.exports = { getAll, getById };
+const create = async (sale) => {
+  const [{ insertId }] = await connection.execute('INSERT INTO sales (date) VALUES (NOW());');
+  sale.forEach(async (item) => {
+    await connection
+      .execute(
+        'INSERT INTO sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?);',
+        [insertId, item.productId, item.quantity],
+      );
+  });
+  return insertId;
+};
+
+module.exports = { getAll, getById, create };

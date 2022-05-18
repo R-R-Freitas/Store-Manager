@@ -26,7 +26,8 @@ const create = async (sale) => {
   if (missingKeys.error) throw errorHandler(400, missingKeys.error.details[0].message);
   const invalidValues = salesValuesValidation.validate(sale[0]);
   if (invalidValues.error) throw errorHandler(422, invalidValues.error.details[0].message);
-  return sale;
+  const modelResult = await salesModels.create(sale);
+  return { id: modelResult, itemsSold: sale };
 };
 
 module.exports = { getAll, getById, create };
