@@ -22,7 +22,7 @@ const getById = async (id) => {
 };
 
 const create = async (sale) => {
-  sale.forEach(item => {
+  sale.forEach((item) => {
     const missingKeys = salesKeysValidation.validate(item);
     if (missingKeys.error) throw errorHandler(400, missingKeys.error.details[0].message);
     const invalidValues = salesValuesValidation.validate(item);
