@@ -11,4 +11,14 @@ const getById = async (id) => {
   return result;
 };
 
-module.exports = { getAll, getById };
+const getByName = async (name) => {
+  const [[result]] = await connection.execute('SELECT * FROM products WHERE name = ?;', [name]);
+  return result;
+};
+
+const create = async (name, quantity) => {
+  const [{ insertId }] = await connection.execute('INSERT INTO products (name, quantity) VALUES (?, ?)', [name, quantity]);
+  return { id: insertId, name, quantity };
+};
+
+module.exports = { getAll, getById, getByName, create };

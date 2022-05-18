@@ -21,7 +21,11 @@ const create = async (product) => {
   if (missingKeys.error) throw errorHandler(400, missingKeys.error.details[0].message);
   const invalidValues = productValuesValidation.validate(product);
   if (invalidValues.error) throw errorHandler(422, invalidValues.error.details[0].message);
-  return product;
+  const { name, quantity } = product;
+  const searchByName = await productsModels.getByName(name);
+  if (searchByName) throw errorHandler(409, 'Product already exists');
+  const modelResult = await productsModels.create(name, quantity);
+  return modelResult;
 };
 
 module.exports = { getAll, getById, create };
