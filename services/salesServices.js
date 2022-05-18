@@ -22,10 +22,12 @@ const getById = async (id) => {
 };
 
 const create = async (sale) => {
-  const missingKeys = salesKeysValidation.validate(sale[0]);
-  if (missingKeys.error) throw errorHandler(400, missingKeys.error.details[0].message);
-  const invalidValues = salesValuesValidation.validate(sale[0]);
-  if (invalidValues.error) throw errorHandler(422, invalidValues.error.details[0].message);
+  sale.forEach(item => {
+    const missingKeys = salesKeysValidation.validate(item);
+    if (missingKeys.error) throw errorHandler(400, missingKeys.error.details[0].message);
+    const invalidValues = salesValuesValidation.validate(item);
+    if (invalidValues.error) throw errorHandler(422, invalidValues.error.details[0].message);
+  });
   const modelResult = await salesModels.create(sale);
   return { id: modelResult, itemsSold: sale };
 };
