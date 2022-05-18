@@ -17,7 +17,8 @@ const getByName = async (name) => {
 };
 
 const create = async (name, quantity) => {
-  const [{ insertId }] = await connection.execute('INSERT INTO products (name, quantity) VALUES (?, ?)', [name, quantity]);
+  const [{ insertId }] = await connection
+    .execute('INSERT INTO products (name, quantity) VALUES (?, ?)', [name, quantity]);
   return { id: insertId, name, quantity };
 };
 
