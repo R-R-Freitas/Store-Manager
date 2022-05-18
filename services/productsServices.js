@@ -28,4 +28,11 @@ const create = async (product) => {
   return modelResult;
 };
 
-module.exports = { getAll, getById, create };
+const update = async (product) => {
+  const { id, name, quantity } = product;
+  const modelResult = await productsModels.update(id, name, quantity);
+  if (!modelResult || modelResult < 1) throw errorHandler(404, 'Product not found');
+  return { id, name, quantity };
+};
+
+module.exports = { getAll, getById, create, update };
